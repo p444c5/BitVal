@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+
+:root {
+  background-color: #030712; /* This is tailwind's gray-950 */
+  color-scheme: dark; /* Helps scrollbars look dark too */
+}
+
+body {
+  @apply bg-gray-950 text-gray-200;
+  margin: 0;
+  min-height: 100vh;
+}
