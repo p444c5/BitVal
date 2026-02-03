@@ -9,19 +9,19 @@ const upload = multer({ dest: 'uploads/' });
 const exchangeController = new ExchangeController();
 const participantController = new ParticipantController();
 
-router.post("/pair", exchangeController.pairParticipants);
+// router.post("/pair", exchangeController.pairParticipants);
 
-router.post("/distribute", exchangeController.distributeGifts);
+// router.post("/allocate", exchangeController.allocateGifts);
 
 router.get("/participants", participantController.getAllParticipants);
 
 router.post("/newparticipant", participantController.addParticipant);
   
-router.post("/participants/bulk-upload", upload.single('file'), participantController.bulkUploadParticipants);
+// router.post("/participants/bulk-upload", upload.single('file'), participantController.bulkUploadParticipants);
 
-router.post("/participant/update/:id", participantController.updateParticipant);
+// router.post("/participant/update/:id", participantController.updateParticipant);
 
-router.delete("/participant/delete/:id", participantController.deleteParticipant);
+// router.delete("/participant/delete/:id", participantController.deleteParticipant);
 
 
 const setRoutes = (app:Application) => {

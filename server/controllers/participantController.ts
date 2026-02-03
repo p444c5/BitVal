@@ -12,7 +12,7 @@ class ParticipantController {
 
     public getAllParticipants = async (req: Request, res: Response): Promise<void> => {
         try {
-            const participants : IParticipant[] = await ParticipantDB.find();
+            const participants : IParticipant[] = await ParticipantDB.find().sort({ createdAt: -1 });
             res.status(200).json({ success: true, participants });
         } catch (error) {
             res.status(500).json({ message: "Error fetching participants", error });

@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { Gift, Users, Calendar, Heart, Lock, Shuffle, Clock } from 'lucide-react';
 import RecentParticipants from '@/components/participants/RecentParticipants';
 import { useParticipantsContext } from '@/context/ParticipantContext';
-import type { IParticipant } from '@/types';
+import type { IParticipant, UIParticipant } from '@/types';
 
 // Define Event Milestones
 const DATES = {
@@ -13,18 +13,18 @@ const DATES = {
 type EventPhase = 'registration' | 'pairing' | 'live';
 
 const Home: React.FC = () => {
-    const { participants, count,pool} = useParticipantsContext();
+    const {rawParticipants, count,pool} = useParticipantsContext();
 
     // Data mapping for Recent Participants
-    const recentParticipants = useMemo(() => {
-        return participants.slice(0, 5).map((p: IParticipant) => ({
+    const recentParticipants: UIParticipant[] = useMemo(() => {
+        return rawParticipants.slice(0, 10).map((p: IParticipant) => ({
             id: p._id, 
             name: p.name,
             walletAddress: p.walletAddress,
             giftValue: p.deposit, 
-            joinedDate: p.createdAt
+            joinedDate: p.createdAt!
         }));
-    }, [participants]);
+    }, [rawParticipants]);
 
 
     const [phase, setPhase] = useState<EventPhase>('registration');
@@ -121,7 +121,7 @@ const Home: React.FC = () => {
                             <div>
                                 <p className="text-gray-400 text-sm font-medium">Est. Pool Value</p>
                                 <p className="text-3xl font-bold text-white mt-1">
-                                 ${pool}
+                                 {pool}BTC
                                 </p>
                             </div>
                             <div className="bg-purple-500/10 p-3 rounded-full">

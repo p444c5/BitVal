@@ -12,6 +12,7 @@ export type IParticipant = {
 
 export interface IParticipantStore {
   participants: IParticipant[];
+  rawParticipants: IParticipant[];
   loading: boolean;
   error: string | null;
   count: number;
@@ -22,7 +23,7 @@ export interface IParticipantStore {
 export interface UIParticipant extends Omit<IParticipant, "_id" | "deposit"> {
   id: string | number;
   giftValue?: number;
-  joinedDate?: string;
+  joinedDate: string;
 }
 
 export interface UIParticipantGridProps {

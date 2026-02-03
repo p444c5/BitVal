@@ -37,6 +37,7 @@ export const useParticipantStore = () : IParticipantStore => {
 
     return {
         participants: sortedParticipants,
+        rawParticipants: rawParticipants,
         count,
         loading,
         error,

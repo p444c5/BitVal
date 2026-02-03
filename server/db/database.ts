@@ -18,7 +18,7 @@ const connectToDatabase = async () : Promise<void> => {
 
 export { connectToDatabase };
 
-// const database = new Sequelize('valentine_gift_exchange', 'username', 'password', {
+// const database = new Sequelize('valentine_gift_exchange', 'username', 'walletAddress', {
 //     host: 'localhost',
 //     dialect: 'mysql', // or 'postgres', 'sqlite', 'mssql'
 // });

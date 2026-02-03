@@ -65,7 +65,7 @@ const ParticipantGrid: React.FC<UIParticipantGridProps> = ({
                             <div className="flex items-center justify-between pt-2 border-t border-gray-900 group-hover:border-gray-800 transition-colors">
                                 <div>
                                     <p className="text-xs text-gray-500 mb-1">Gift Value</p>
-                                    <p className="text-2xl font-bold text-white">${participant?.giftValue}</p>
+                                    <p className="text-2xl font-bold text-white">{participant?.giftValue}BTC</p>
                                 </div>   
                             </div>
                         </div>

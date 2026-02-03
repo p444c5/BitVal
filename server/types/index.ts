@@ -17,5 +17,12 @@ export class Pairing {
     public participant2: IParticipant
   ) {}
 }
+export interface IDistributionPlan extends Document {
+  giverName: string;
+  giverAddress: string;
+  receiverName: string;
+  receiverAddress: string;
+  amount: number;
+}
 
 export interface CsvRow extends IParticipant{}

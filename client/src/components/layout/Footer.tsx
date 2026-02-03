@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-gray-950 border-t border-gray-800 mt-20 relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-500/50 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-linear-to-r from-transparent via-rose-500/50 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -42,7 +42,7 @@ const Footer = () => {
         
         <div className="border-t border-white/5 mt-12 pt-8">
           <p className="text-center text-gray-500 text-sm">
-            © 2026 BitVal. Created with <span className="text-rose-500 animate-pulse">❤</span> for the future.
+            © 2026 BitVal. Created with <span className="text-rose-500 animate-pulse">❤</span> for the future of Bitcointalk.
           </p>
         </div>
       </div>
