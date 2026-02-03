@@ -12,26 +12,47 @@ valentine-gift-exchange
 │   ├── public            # Public assets
 │   │   └── index.html    # Main HTML file
 │   ├── src               # Source files
-│   │   ├── components     # React components
-│   │   │   ├── GiftList.tsx
-│   │   │   └── ParticipantForm.tsx
-│   │   ├── App.tsx       # Main application component
-│   │   ├── index.tsx     # Entry point for React
-│   │   └── styles.css    # CSS styles
+│   │   ├── components    # React components
+│   │   │   ├── ***
+│   │   ├── context       # Context files
+│   │   │   ├── ***
+│   │   ├── hooks         # Custom hooks files
+│   │   │   ├── ***
+│   │   ├── layouts       # App layouts
+│   │   │   ├── App.jsx   # Main application component
+│   │   │   ├── ***
+│   │   ├── Pages         # Pages
+│   │   │   ├── ***
+│   │   ├── services      # Api service files
+│   │   │   ├── ***
+│   │   ├── store         # Store files
+│   │   │   ├── ***
+│   │   ├── styles        # CSS styles
+│   │   │   ├── ***
+│   │   ├── types         # TS types
+│   │   │   ├── ***
+│   │   ├── utils         # Utility files
+│   │   │   ├── ***
 │   ├── package.json      # Client package configuration
 │   └── tsconfig.json     # Client TypeScript configuration
 ├── server                # Server-side application
 │   ├── src               # Source files
 │   │   ├── config        # Configuration files
-│   │   │   └── database.ts
+│   │   │   └── ***
 │   │   ├── controllers   # Controller files
-│   │   │   ├── exchangeController.ts
-│   │   │   └── paymentController.ts
+│   │   │   ├── ***
+│   │   ├── db            # DB files
+│   │   │   ├── ***
+│   │   ├── controllers   # Middleware files
+│   │   │   ├── ***
 │   │   ├── models        # Model files
-│   │   │   ├── Participant.ts
-│   │   │   └── Pairing.ts
+│   │   │   └── ***
 │   │   ├── routes        # Route files
-│   │   │   └── api.ts
+│   │   │   └── ***
+│   │   ├── types         # TS types
+│   │   │   ├── ***
+│   │   ├── uploads       # Client uploads
+│   │   │   ├── ***
 │   │   └── server.ts     # Entry point for the server
 │   ├── package.json      # Server package configuration
 │   └── tsconfig.json     # Server TypeScript configuration
@@ -99,5 +120,6 @@ To get started with the Valentine gift exchange application, follow these steps:
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or features you would like to add.
 
 ## License
+
 
 This project is licensed under the MIT License. See the LICENSE file for details.
