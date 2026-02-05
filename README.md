@@ -113,7 +113,7 @@ Entropy: Uses crypto.randomInt for  randomness.
 The Math: By raising a random float (0-1) to the power of 3, the weights skew heavily.
 The Result: Most participants receive a standard allocation, while a small percentage receive a significantly larger "Jackpot" allocation.
 
-3. Verification & Transparency / Audit Trail
+**3. Verification & Transparency / Audit Trail**
 Every time the allocation runs, a tamper-proof Distribution Plan is saved to the database containing:
 Batch ID: A unique UUID for the run.
 Execution Timestamp: Exact server time of the RNG event.
