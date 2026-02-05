@@ -1,5 +1,24 @@
+import { JwtPayload } from "jsonwebtoken";
 import { Document } from "mongodb";
 import mongoose from "mongoose";
+
+export interface IAdmin extends Document {
+  username: string;
+  password: string;
+}
+
+export interface IDecodedToken extends JwtPayload , IAdmin{
+    role?: string;
+}
+
+export interface IDecodedUser extends JwtPayload {
+    username: string;
+    role?: string;
+}
+export interface AuthRequest extends Request {
+    user: IDecodedUser | string; 
+}
+
 
 export interface IParticipant extends Document {
   name: string;

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { default as ParticipantDB } from '../models/Participants';
-// Import the new DistributionPlan model
 import { default as DistributionPlanDB } from '../models/DistributionPlan';
 import { IParticipant, Pairing } from '../types';
+import crypto from 'crypto';
 import axios from 'axios';
 
 class ExchangeController {
@@ -80,7 +80,7 @@ class ExchangeController {
 
             // FETCH  BTC BALANCE FROM MEMPOOL.SPACE
             let currentPoolValueBTC = 0;
-            const POOL_ADDRESS = "bc1qexamplepooladdressxxxxxxxxxxxxxxxxxxxxxxxxxx"; 
+            const POOL_ADDRESS = "bc1qetobeaddedlol"; 
 
             try {
                 // Returns value in Satoshis. We convert to BTC.
@@ -104,9 +104,18 @@ class ExchangeController {
              */
             const VOLATILITY = 3; 
 
+            // Generate a unique ID for this specific run of the algorithm
+            const batchId = crypto.randomUUID(); 
+            const executionTimestamp = new Date();
+
             /** Generate Random Weights for Each Participant */
-            const weightedParticipants = participants.map(p => {
-                const randomWeight = Math.pow(Math.random(), VOLATILITY);
+           const weightedParticipants = participants.map(p => {
+                const PRECISION = 100_000_000;
+                const secureFloat = crypto.randomInt(0, PRECISION) / PRECISION;
+
+                // Apply volatility curve using the secure float
+                const randomWeight = Math.pow(secureFloat, VOLATILITY);
+                
                 return { participant: p, weight: randomWeight };
             });
 
@@ -148,7 +157,10 @@ class ExchangeController {
 
                 // Create record object
                 distributionPlan.push({
-                    giverName: p.name,                                 // Added for evidence
+                    batchId: batchId,                                  
+                    timestamp: executionTimestamp,                     
+                    volatilitySetting: VOLATILITY,                     
+                    giverName: p.name,                                 
                     receiverName: partner ? partner.name : "Unknown",
                     amount: p.amountAllocated,
                     giverAddress: p.walletAddress,
@@ -160,10 +172,12 @@ class ExchangeController {
             await DistributionPlanDB.insertMany(distributionPlan);
 
             console.log(`Pool: ${currentPoolValueBTC}, Distributed: ${distributedSoFar.toFixed(8)}`);
-
+           
             res.status(200).json({ 
                 success: true, 
                 message: "Pool allocated randomly and evidence stored.",
+                batchId: batchId, 
+                timestamp: executionTimestamp,
                 totalDistributed: distributedSoFar,
                 distributionPlan 
             });
@@ -193,7 +207,7 @@ class ExchangeController {
     */
     private shuffleArray = (array: IParticipant[]): IParticipant[] => {
         for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
+            const j = crypto.randomInt(0, i + 1);
             [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
