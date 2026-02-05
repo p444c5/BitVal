@@ -104,7 +104,7 @@ The gift pool is **NOT** distributed equally. We use a volatility curve (Default
 *The Probability Formula:*
 ```math
 Weight = (RandomSecureFloat) ^ Volatility
-
+```
 The Probability Formula:
 Weight=(RandomSecureFloat)^Volatility
 
@@ -119,16 +119,16 @@ Batch ID: A unique UUID for the run.
 Execution Timestamp: Exact server time of the RNG event.
 Volatility Setting: The parameter used for that specific run.
 This allows the community to verify that the code executed matches the distributed result. The log will also be uploaded on active thread :)
+
 ## Features
 
-- Participants can view available gifts.
+- Participants can view prize pool.
 - Participants are paired for gift exchange.
-- Payment processing between paired participants.
+- participants can view other participants details and allocations.
 
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or features you would like to add.
 
 ## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+Nil
