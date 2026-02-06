@@ -30,11 +30,9 @@ export interface IParticipant extends Document {
   status?: 'active' | 'matched' | 'completed' |'allocated';
 }
 
-export class Pairing {
-  constructor(
-    public participant1: IParticipant,
-    public participant2: IParticipant
-  ) {}
+export interface Pairing {
+    giver: string;
+    receiver: string;
 }
 export interface IDistributionPlan extends Document {
   giverName: string;
