@@ -2,26 +2,7 @@ import crypto from "crypto";
 import { IParticipant } from "../../types";
 
 export class ParticipantFactory {
-  private username: string[] = [
-    "Alice",
-    "Bob",
-    "Charlie",
-    "David",
-    "Eve",
-    "Frank",
-    "Grace",
-    "Heidi",
-    "Ivan",
-    "Judy",
-    "Mallory",
-    "Niaj",
-    "Oscar",
-    "Peggy",
-    "Sybil",
-    "Trent",
-    "Walter",
-  ]; // i will be  using  a dictionary  with real forum usernames later
-
+   private username: string[] = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Judy", "Mallory", "Niaj", "Oscar", "Peggy", "Sybil", "Trent", "Walter"]; // i will be  using  a dictionary  with real forum usernames later..
   private getRandomElement<T>(arr: T[]): T {
     return arr[Math.floor(crypto.randomInt(0, arr.length))];
   }
