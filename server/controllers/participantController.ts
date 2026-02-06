@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { default as ParticipantDB } from '../models/Participants';
+import { default as ParticipantDB } from '../models/Participant';
 import fs from 'fs';
 import csv from 'csv-parser';
 import type {IParticipant, CsvRow} from '../types';
