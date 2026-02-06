@@ -91,9 +91,13 @@ To get started with the Valentine gift exchange application, follow these steps:
    npm install
    ```
 ### Seeding (defaulta[20])
+```
 npm run seed
-# or with arguments (requires extra --)
+```
+#### or with arguments (requires extra --)
+```
 npm run seed -- --count=50
+```
 
 ### Running the Application
 

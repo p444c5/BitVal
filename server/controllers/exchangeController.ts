@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
-import { default as ParticipantDB } from '../models/Participants';
+import { default as ParticipantDB } from '../models/Participant';
 import { default as DistributionPlanDB } from '../models/DistributionPlan';
 import { IParticipant, Pairing } from '../types';
+import { AnyBulkWriteOperation } from 'mongoose';
 import crypto from 'crypto';
 import axios from 'axios';
 
@@ -9,43 +10,54 @@ class ExchangeController {
     /**
      * pairs uploaded participants from DB
      */
-    public pairParticipants = async (req: Request, res: Response): Promise<void> => {
+  public pairParticipants = async (req: Request, res: Response): Promise<void> => {
         try {
+        
 
-            const participants = await ParticipantDB.find({ isPaired: false });
+            const participants = await ParticipantDB.find({ isPaired: false }) as unknown as IParticipant[];
 
             if (participants.length < 2) {
-                res.status(400).json({ message: "Not enough participants to pair." });
+                res.status(400).json({ message: "Not enough participants to pair " });
                 return; 
             }
 
             const shuffled = this.shuffleArray(participants);
-            const pairings: Pairing[] = [];
-
-            /**                     === Randomized Chain ===
-             * Array is already shuffled randomly  (preventing timestamp cheating), refrence const shuffled above
-             * We use a circular chain so odd numbers work perfectly
-            */ 
             
+            const bulkOps : AnyBulkWriteOperation<IParticipant>[] = [];
+            
+            const pairingsDisplay:Pairing[] = [];
+
             for (let i = 0; i < shuffled.length; i++) {
                 const giver = shuffled[i];
-                
-                /** The '%' ensures the last person gifts the first person. */
                 const receiver = shuffled[(i + 1) % shuffled.length];
 
-                const pairing = new Pairing(giver, receiver);
-                pairings.push(pairing);
+                pairingsDisplay.push({
+                    giver: giver.name,
+                    receiver: receiver.name
+                });
 
-                /** Update DB: One-way relationship (Giver -> Receiver) */
-                giver.pairedWith = receiver._id as any;
-                giver.isPaired = true;
-                await giver.save();
+                bulkOps.push({
+                    updateOne: {
+                        filter: { _id: giver._id },
+                        update: { 
+                            $set: { 
+                                pairedWith: receiver._id,
+                                isPaired: true,
+                                status: 'matched' 
+                            } 
+                        }
+                    }
+                });
             }
+
+            // Execute all DB changes efficiently
+            await ParticipantDB.bulkWrite(bulkOps);
 
             res.status(200).json({ 
                 success: true, 
-                message: "Participants paired successfully", 
-                pairings 
+                message: "Participants paired successfully (Circular Chain)", 
+                count: shuffled.length,
+                pairings: pairingsDisplay 
             });
 
         } catch (error) {
@@ -53,6 +65,7 @@ class ExchangeController {
             res.status(500).json({ message: "Error generating pairs", error });
         }
     }
+
 
     /** 
      * Distributes the TOTAL Pool Balance randomly among participants.
