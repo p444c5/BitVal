@@ -8,6 +8,7 @@ export type IParticipant = {
   pairedWith?: string | null;
   isPaired?: boolean;
   createdAt?: string;
+  updatedAt?: string;
 };
 
 export interface IParticipantStore {

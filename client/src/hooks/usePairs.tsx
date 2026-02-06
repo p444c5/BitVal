@@ -37,7 +37,9 @@ export const usePairs = () => {
                 fromValue: p.amountAllocated ?? 0, 
                 to: pairedParticipant?.name || 'Unknown',   
                 toValue: pairedParticipant?.amountAllocated ?? 0, 
-                timestamp: new Date().toISOString(),
+                timestamp: p.updatedAt ? new Date(p.updatedAt).toLocaleDateString(undefined, {
+                                            year: 'numeric',month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',second: '2-digit'
+                                        }) : '--',
                 status: pairStatus
             };
         });

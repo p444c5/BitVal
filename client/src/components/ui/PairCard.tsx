@@ -31,7 +31,7 @@ const PairCard: React.FC<PairCardProps> = ({ pair }) => {
                         <div className="flex items-center gap-2">
                              <Gift className="w-3.5 h-3.5 text-rose-500" />
                              <p className="text-rose-400 font-bold text-lg font-mono tracking-tight">
-                                ${pair.fromValue.toLocaleString()}
+                                ${pair.fromValue}BTC
                             </p>
                         </div>
                     </div>
