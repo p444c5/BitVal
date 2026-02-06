@@ -90,6 +90,10 @@ To get started with the Valentine gift exchange application, follow these steps:
    cd ../server
    npm install
    ```
+### Seeding (defaulta[20])
+npm run seed
+# or with arguments (requires extra --)
+npm run seed -- --count=50
 
 ### Running the Application
 
@@ -131,7 +135,9 @@ Weight=(RandomSecureFloat)^Volatility
 
  
 Entropy: Uses crypto.randomInt for  randomness.
+
 The Math: By raising a random float (0-1) to the power of 3, the weights skew heavily.
+
 The Result: Most participants receive a standard allocation, while a small percentage receive a significantly larger "Jackpot" allocation.
 
 **3. Verification & Transparency / Audit Trail**
