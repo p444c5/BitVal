@@ -11,7 +11,7 @@ interface RecentParticipantsProps {
 
 const RecentParticipants: React.FC<RecentParticipantsProps> = ({ participants }) => {
     return (
-        <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+      
             <div className="space-y-4 max-h-150 overflow-y-auto scrollbar-hide ">
                 {participants.map((participant) => (
                     <div
@@ -46,7 +46,6 @@ const RecentParticipants: React.FC<RecentParticipantsProps> = ({ participants })
                     </div>
                 ))}
             </div>
-        </div>
     );
 };
 

@@ -121,7 +121,7 @@ const Home: React.FC = () => {
                             <div>
                                 <p className="text-gray-400 text-sm font-medium">Est. Pool Value</p>
                                 <p className="text-3xl font-bold text-white mt-1">
-                                 {pool}BTC
+                                 {pool ? pool.toFixed(8) : "0.00000000"} BTC
                                 </p>
                             </div>
                             <div className="bg-purple-500/10 p-3 rounded-full">
@@ -151,9 +151,16 @@ const Home: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     
                     {/*  Recent Participants */}
+
                     <div>
                         <h3 className="text-xl font-bold text-white mb-6">New Entries</h3>
-                        <RecentParticipants participants={recentParticipants} />
+                          <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+                           { recentParticipants.length > 0 ? (
+                            <RecentParticipants participants={recentParticipants} />
+                        ) : (   
+                        <h5 className="text-gray-300 text-md font-semibold">No Participants yet</h5>    
+                        )}</div>
+                       
                     </div>
 
                     {/* Tools & Timeline */}

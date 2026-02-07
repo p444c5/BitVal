@@ -6,7 +6,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
+import rateLimit, { RateLimitRequestHandler } from 'express-rate-limit';
 
 
 const app = express();
@@ -16,12 +16,12 @@ app.use(morgan("dev"));
 
 app.use(helmet()); 
 
-const limiter = rateLimit({
+const limiter: RateLimitRequestHandler = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, 
   standardHeaders: true, 
   legacyHeaders: false, 
-  message: "Too many requests from this IP, please try again after 15 minutes",
+  message: "Too many requests from this IP",
 });
 app.use(limiter);
 
