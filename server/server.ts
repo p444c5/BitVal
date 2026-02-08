@@ -5,12 +5,25 @@ import corsOption from './config/corsOption';
 import cors from 'cors'; 
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import rateLimit, { RateLimitRequestHandler } from 'express-rate-limit';
 
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(morgan("dev"));
+
+app.use(helmet()); 
+app.set('trust proxy', 1);
+const limiter: RateLimitRequestHandler = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, 
+  standardHeaders: true, 
+  legacyHeaders: false, 
+  message: "Too many requests from this IP",
+});
+app.use(limiter);
 
 app.use(cors(corsOption)); 
 
@@ -19,7 +32,7 @@ app.use(cookieParser());
 app.use(express.json()); 
 app.use(express.urlencoded({extended:true}));
 
-
+app.get('/ip', (request, response) => response.send(request.ip))
 setRoutes(app);
 
 
