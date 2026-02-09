@@ -115,7 +115,7 @@ npm run seed -- --count=50
    npm start
    ```
 
-3. Open your browser and navigate to `http://localhost:3000` to view the application.
+3. Open your browser and navigate to `http://localhost:5174` to view the application. Client port can be changed form the vite config file
 
 ### How the Algorithm Works (Provably Fair)
 
@@ -134,10 +134,7 @@ The gift pool is **NOT** distributed equally. We use a volatility curve (Default
 ```math
 Weight = (RandomSecureFloat) ^ Volatility
 ```
-The Probability Formula:
-Weight=(RandomSecureFloat)^Volatility
 
- 
 Entropy: Uses crypto.randomInt for  randomness.
 
 The Math: By raising a random float (0-1) to the power of 3, the weights skew heavily.
@@ -146,9 +143,13 @@ The Result: Most participants receive a standard allocation, while a small perce
 
 **3. Verification & Transparency / Audit Trail**
 Every time the allocation runs, a tamper-proof Distribution Plan is saved to the database containing:
+
 Batch ID: A unique UUID for the run.
+
 Execution Timestamp: Exact server time of the RNG event.
+
 Volatility Setting: The parameter used for that specific run.
+
 This allows the community to verify that the code executed matches the distributed result. The log will also be uploaded on active thread :)
 
 ## Features
