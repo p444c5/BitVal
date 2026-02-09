@@ -24,12 +24,11 @@ class ParticipantController {
      */
     public addParticipant = async (req: Request, res: Response): Promise<void> => {
         try {
-            const { name, deposit, walletAddress, amountAllocated } = req.body;
+            const { name, deposit, walletAddress} = req.body;
             const newParticipant : IParticipant = new ParticipantDB({
                 name,
                 deposit,
                 walletAddress,
-                amountAllocated
             });
             const savedParticipant = await newParticipant.save();
             res.status(201).json({ success: true, participant: savedParticipant });
