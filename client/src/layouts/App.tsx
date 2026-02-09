@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useParticipantsContext } from '@/context/ParticipantContext';
+import { Toaster } from 'sonner';
 
 function App() {
    const { loading, count } = useParticipantsContext();
@@ -18,7 +19,7 @@ function App() {
   return (
     <>
       <div className="min-h-screen bg-gray-950 text-gray-200 flex flex-col font-sans selection:bg-gray-700 selection:text-white">
-        
+        <Toaster position="top-right" richColors /> 
         <Header />
 
         {/* Main Content */}

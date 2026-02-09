@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "@/styles/index.css";
 import routes from "@/routes"
-import { ParticipantsProvider } from "./context/ParticipantContext";
 
 
 const container = document.getElementById("root");
@@ -16,8 +15,6 @@ const router = createBrowserRouter(routes);
 
 root.render(
   <React.StrictMode>
-    <ParticipantsProvider>
       <RouterProvider router={router} />
-    </ParticipantsProvider>
   </React.StrictMode>
 );

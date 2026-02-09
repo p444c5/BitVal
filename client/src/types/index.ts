@@ -1,3 +1,5 @@
+import type { ChangeEvent, FormEvent } from "react";
+
 export type IParticipant = {
   _id: string | number;
   name: string;
@@ -49,8 +51,10 @@ export interface Pair {
 export interface PairCardProps {
   pair: Pair;
 }
-export interface NewParticipant extends Omit<IParticipant, "id"> {
+export interface NewParticipant extends Omit<IParticipant, "_id"> {
   id?: string | number;
+
+  
 }
 
 export type BtcCtxStats = {
@@ -66,4 +70,38 @@ export interface MempoolAddressResponse {
     address: string;
     chain_stats: BtcCtxStats;
     mempool_stats: BtcCtxStats;
+}
+
+export type ProcessStatus = 'idle' | 'processing' | 'success' | 'error';
+
+export interface UsePairingControlReturn {
+    pairingStatus: ProcessStatus;
+    allocatingStatus: ProcessStatus;
+    logs: string[];
+    handlePairing: () => Promise<void>;
+    handleAllocation: () => Promise<void>;
+}
+
+export interface FormData {
+    name: string;
+    deposit: string;
+    walletAddress: string;
+}
+
+export interface UseParticipantsManagerReturn {
+     rawParticipants: IParticipant[];
+    uploading: boolean;
+    file: File | null;
+    // Modal State
+    isModalOpen: boolean;
+    formData: FormData;
+    // Handlers
+    handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    handleBulkUpload: () => Promise<void>;
+    handleDeleteParticipant: (id: string | number) => Promise<void>;
+    // Modal Handlers
+    openModal: () => void;
+    closeModal: () => void;
+    handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    handleNewParticipantSubmit: (e: FormEvent) => Promise<void>;
 }

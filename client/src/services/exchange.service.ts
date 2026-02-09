@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 export const pairParticipants = async () => {
     try {
-        const response = await api.post('/pair');
+        const response = await api.post('admin/pair');
         return response.data;
     } catch (error: any) {
         console.error('Error pairing participants:', error);
@@ -16,7 +16,7 @@ export const pairParticipants = async () => {
 
 export const distributeGifts = async () => {
     try {
-        const response = await api.post('/distribute');
+        const response = await api.post('/admin/distribute');
         return response.data;
     } catch (error: any) {
         console.error('Error distributing gifts:', error);
