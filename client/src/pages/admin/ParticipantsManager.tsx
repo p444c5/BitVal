@@ -1,5 +1,5 @@
 import React from 'react';
-import { Upload, Plus, Trash2, Edit2 } from 'lucide-react';
+import { Upload, Plus, Trash2, Edit2} from 'lucide-react';
 import { useParticipantsManager } from '@/hooks/admin/useParticipantsManager';
 import NewParticipantModal from '@/components/ui/admin/NewParticipantModal';
 
@@ -15,7 +15,8 @@ const ParticipantsManager: React.FC = () => {
         openModal,
         closeModal,
         handleInputChange,
-        handleNewParticipantSubmit
+        handleNewParticipantSubmit,
+        handleDeleteParticipant
     } = useParticipantsManager();
 
     return (
@@ -79,7 +80,9 @@ const ParticipantsManager: React.FC = () => {
                                             <button className="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
                                                 <Edit2 className="w-4 h-4" />
                                             </button>
-                                            <button className="p-1.5 text-gray-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors">
+                                            <button 
+                                                onClick={() => handleDeleteParticipant(p._id!)}
+                                                className="p-1.5 text-gray-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors">
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>

@@ -6,7 +6,7 @@ import type { IParticipant,IParticipantStore } from '@/types';
 
 export const useParticipantStore = () : IParticipantStore => {
     const [rawParticipants, setRawParticipants] = useState<IParticipant[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     const loadParticipants = useCallback(async () => {

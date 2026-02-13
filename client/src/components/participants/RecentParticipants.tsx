@@ -1,6 +1,5 @@
 import React from 'react';
 import { Clock, User } from 'lucide-react';
-import { toTitleCase } from '@/utils';
 import type { UIParticipant as Participant } from '@/types';
 
 
@@ -24,7 +23,7 @@ const RecentParticipants: React.FC<RecentParticipantsProps> = ({ participants })
                             </div>
                             <div className="flex-1 min-w-0">
                                 <h4 className="font-semibold text-gray-200 group-hover:text-white capitalize transition-colors truncate">
-                                    {toTitleCase(participant?.name)}
+                                    {participant?.name}
                                 </h4>
                                 <div className="flex items-center space-x-1 text-xs text-gray-500">
                                     <Clock className="w-3 h-3" />

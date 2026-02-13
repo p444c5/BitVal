@@ -17,7 +17,7 @@ export const getAllParticipants = async () => {
 
 export const addParticipant = async (participantData: NewParticipant) => {
   const toastId = toast.loading("Adding participant...");
-  
+
   try {
     const response = await api.post("admin/newparticipant", participantData);
     toast.success("Participant added successfully", { id: toastId });
@@ -25,7 +25,9 @@ export const addParticipant = async (participantData: NewParticipant) => {
   } catch (error) {
     console.error("Error adding participant:", error);
     const err = error as AxiosError<{ message: string }>;
-    toast.error(err.response?.data?.message || "Failed to add participant", { id: toastId });
+    toast.error(err.response?.data?.message || "Failed to add participant", {
+      id: toastId,
+    });
     throw error;
   }
 };
@@ -35,20 +37,44 @@ export const bulkUploadParticipants = async (file: File) => {
 
   try {
     const formData = new FormData();
-    formData.append('file', file);
-    
-    const response = await api.post("admin/participants/bulk-upload", formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    formData.append("file", file);
+
+    const response = await api.post(
+      "admin/participants/bulk-upload",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
 
     toast.success("Participants uploaded successfully", { id: toastId });
     return response.data;
   } catch (error) {
     console.error("Bulk upload failed:", error);
     const err = error as AxiosError<{ message: string }>;
-    toast.error(err.response?.data?.message || "Bulk upload failed.", { id: toastId });
-    return false; 
+    toast.error(err.response?.data?.message || "Bulk upload failed.", {
+      id: toastId,
+    });
+    return false;
+  }
+};
+export const deleteParticipant = async (participantId: string) => {
+  const toastId = toast.loading("Deleting participant...");
+
+  try {
+    const response = await api.delete(
+      `admin/participant/delete/${participantId}`,
+    );
+    toast.success("Participant deleted successfully", { id: toastId });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting participant:", error);
+    const err = error as AxiosError<{ message: string }>;
+    toast.error(err.response?.data?.message || "Failed to delete participant", {
+      id: toastId,
+    });
+    throw error;
   }
 };

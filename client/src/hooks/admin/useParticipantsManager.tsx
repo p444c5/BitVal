@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { useParticipantsContext } from '@/context/ParticipantContext';
-import { bulkUploadParticipants, addParticipant } from '@/services/participants.service';
+import { bulkUploadParticipants, addParticipant, deleteParticipant } from '@/services/participants.service';
 import type {  UseParticipantsManagerReturn,FormData,  NewParticipant } from '@/types';
 import type { ChangeEvent, FormEvent } from 'react';
 
@@ -45,8 +45,12 @@ export const useParticipantsManager = (): UseParticipantsManagerReturn => {
     };
     
     const handleDeleteParticipant = async (id: string | number) => {
-        console.log("Delete logic (mock)", id);
-        
+        try {
+            await deleteParticipant(String(id));
+            loadParticipants();
+        } catch (error) {
+            console.error('Delete failed hook level', error);
+        }
     };
 
 

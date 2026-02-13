@@ -1,7 +1,6 @@
 import React from "react";
 import { Check, Copy, User } from "lucide-react";
 import type { UIParticipantGridProps } from "@/types";
-import { toTitleCase } from "@/utils";
 
 const ParticipantGrid: React.FC<UIParticipantGridProps> = ({
     participants,
@@ -30,7 +29,7 @@ const ParticipantGrid: React.FC<UIParticipantGridProps> = ({
                                     </div>
                                     <div className="min-w-0">
                                         <h3 className="font-semibold text-white truncate group-hover:text-rose-200 transition-colors">
-                                            {toTitleCase(participant?.name)}
+                                            {participant?.name}
                                         </h3>
                                         <p className="text-xs text-gray-500">{participant?.joinedDate}</p>
                                     </div>

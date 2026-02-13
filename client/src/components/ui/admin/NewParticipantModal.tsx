@@ -1,6 +1,6 @@
 
 import React from "react";
-import { X, User, DollarSign, Wallet } from "lucide-react";
+import { X, User, Wallet, Bitcoin } from "lucide-react";
 
 const NewParticipantModal: React.FC<{
     formData: { name: string; deposit: string; walletAddress: string };
@@ -39,15 +39,16 @@ const NewParticipantModal: React.FC<{
                 <div className="space-y-2">
                     <label className="text-xs font-medium text-gray-400 ml-1">Deposit Amount (BTC)</label>
                     <div className="relative">
-                        <DollarSign className="absolute left-3 top-2.5 w-4 h-4 text-gray-500" />
-                        <input
+                        <Bitcoin  className="absolute left-3 top-2.5 w-4 h-4 text-gray-500" />
+                       <input
                             type="number"
                             name="deposit"
-                            step="0.00000001"
+                            step="any"
                             value={formData.deposit}
                             onChange={handleInputChange}
+                            onWheel={(e) => e.currentTarget.blur()}
                             className="w-full bg-black/50 border border-gray-800 rounded-lg py-2 pl-10 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-rose-500/50 focus:ring-1 focus:ring-rose-500/50 transition-all text-sm"
-                            placeholder="0.00"
+                            placeholder="0.00000000"
                         />
                     </div>
                 </div>
